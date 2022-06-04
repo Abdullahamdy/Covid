@@ -1,0 +1,134 @@
+/* Start Booking */
+.book-content {
+    width: 100%;
+    color: #000;
+    padding-block: 100px
+}
+.book-content .booking-heading {
+    width: 70%;
+    text-align: center;
+    margin-inline: auto
+}
+@media (max-width: 767px) {
+    .book-content .booking-heading {
+        width: 100%
+    }
+}
+.book-content .booking-heading h1 {
+    line-height: 1.1em;
+    margin-bottom: 30px;
+    font-size: 4vw;
+    font-weight: 600
+}
+@media (max-width: 1000px) {
+    .book-content .booking-heading h1 {
+        font-size: 42px
+    }
+}
+/* End Booking */
+
+/* Start Booking Form Section */
+.booking-form-section .register-form {
+    box-shadow: 0 0 8px #EEE;
+    border: var(--primary-border);
+    border-radius: var(--primary-radius)
+}
+.booking-form-section .register-form > div {
+    border-bottom: var(--primary-border);
+    padding: 50px
+}
+@media (max-width: 767px) {
+    .booking-form-section .register-form > div {
+        padding: 50px 20px
+    }
+}
+.booking-form-section .register-form > div:last-child {
+    border-bottom: 0
+}
+.booking-form-section .register-form .form-header {
+    text-align: center
+}
+.booking-form-section .register-form .form-header > span {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 700
+}
+.booking-form-section .register-form .heading {
+    margin-bottom: 30px
+}
+.booking-form-section .register-form .all-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px
+}
+.booking-form-section .register-form .all-content .three-width {
+    width: calc((100% / 3) - 20px);
+}
+.booking-form-section .register-form .all-content .two-width {
+    width: calc(50% - 15px);
+}
+.booking-form-section .register-form .all-content .one-width {
+    width: 100%
+}
+@media (max-width: 767px) {
+    .booking-form-section .register-form .all-content .two-width,
+    .booking-form-section .register-form .all-content .three-width {
+        width: 100%
+    }
+}
+.booking-form-section .register-form .all-content input {
+    background-color: rgb(247, 246, 242);
+    border: var(--primary-border);
+    border-radius: var(--primary-radius);
+    padding: 20px;
+    font-size: 15px;
+    font-weight: 600
+}
+@media (max-width: 500px) {
+    .booking-form-section .register-form .all-content input {
+        font-size: 13px;
+        font-weight: 400
+    }
+}
+.booking-form-section .register-form .all-content > div {
+    gap: 10px
+}
+.booking-form-section .register-form .all-content .file-container {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+.booking-form-section .register-form .all-content .file-container input {
+    width: 300px;
+    height: 59px;
+    background-color: rgb(247, 246, 242);
+    border: var(--primary-border);
+    border-radius: var(--primary-radius);
+    /* padding: 20px; */
+    font-size: 15px;
+    font-weight: 600
+}
+.booking-form-section .register-form .submit-and-reset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px
+}
+.booking-form-section .register-form .submit-and-reset > input {
+    width: 200px;
+    height: 49px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    cursor: pointer
+}
+.booking-form-section .register-form .submit-and-reset .reset {
+    background-color: rgb(37, 37, 37);
+    color: #FFF;
+    border-color: rgb(37, 37, 37)
+}
+.booking-form-section .register-form .submit-and-reset .reset:hover {
+    background-color: rgb(56, 56, 56)
+}
+/* End Booking Form Section */
