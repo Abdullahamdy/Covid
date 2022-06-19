@@ -17,6 +17,15 @@
     </ul>
 </div>
 @endif
+@if(session()->has('msgeSuccess'))
+<div class="alert alert-success">
+    <ul>
+       {{ session()->get('msgeSuccess')}}
+    </ul>
+</div>
+@endif
+
+
         <!-- Start Home -->
         <section class="home">
             <a href="#" class="book-now center-flex primary-btn">احجز الان</a>
@@ -28,8 +37,13 @@
                         <div class="search-box search-home">
                             <input type="search" placeholder="ابحث عن أي شئ تريده...">
                             <i class="uil uil-search"></i>
-                        </div>
-                        <a href="start.html" class="get-started center-flex btn primary-btn">ابدأ</a>
+
+                        </div><form method="post" action="{{route('logout')}}">
+
+
+                            @csrf
+                        <button  class="btn btn-primary center-flex btn primary-btn">تسجيل الخروج</button>
+                        </form>
                         <span>اذا شعرت بأي أعراض قد توحي باصابتك من فضلك توجه الى أقرب مستشفى.</span>
                     </div>
                 </div>
@@ -67,6 +81,8 @@
                         <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public?gclid=EAIaIQobChMIpaid_ofT9gIVEtxRCh2gNAHmEAAYASABEgLmyfD_BwE" class="get-info center-flex btn primary-btn" target="_blank">مزيد حول كوفيد-19</a>
                     </div>
                     <div class="step-box">
+                        @inject('feelingContagiouses', 'App\Models\FeelingContagious')
+                      @foreach($feelingContagiouses->get() as $key=>$felling)
                         <div class="box">
                             <div class="main-content">
                                 <div class="icon-box">
@@ -75,62 +91,15 @@
                                     </div>
                                 </div>
                                 <div class="text-container">
-                                    <h4>الاصابه بالعدوى</h4>
-                                    <p>من المرجح أن اصابتك بالعدوى قد تكون ناجمه عن مخالطتك بالأخرين لذا احرص على الابتعاد الكافي عن الأخرين.</p>
+                                    <h4>{{$felling->tittle}}</h4>
+                                <p>{{$felling->text}}.</p>
                                 </div>
                             </div>
                             <div class="number-box center-flex">
-                                <span>1</span>
+                                <span>{{++$key}}</span>
                             </div>
                         </div>
-                        <div class="box">
-                            <div class="main-content">
-                                <div class="icon-box">
-                                    <div class="i-container center-flex">
-                                        <i class='bx bxs-brain bx-tada' style='color:#00a2ff'></i>
-                                    </div>
-                                </div>
-                                <div class="text-container">
-                                    <h4>تحقق من اصابتك</h4>
-                                    <p>قم بالدخول على الموقع الرسمي لمنظمه الصحه العالميه أو المؤسسه الصحيه التابعه لبلدك وتحقق من الأعراض الناجمه عن الاصابه بكوفيد-19.</p>
-                                </div>
-                            </div>
-                            <div class="number-box center-flex">
-                                <span>2</span>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="main-content">
-                                <div class="icon-box">
-                                    <div class="i-container center-flex">
-                                        <i class='bx bx-capsule bx-tada' style='color:#be00ff'></i>
-                                    </div>
-                                </div>
-                                <div class="text-container">
-                                    <h4>أخد لقاحات أو أدويه</h4>
-                                    <p>احذر فان تناول أي لقاحات أو أدويه دون علم الطبيب قد تؤدي الى مشاكل خطيره قد تصل الى الوفاه لذا احرص على متابعه طبيبك باستمرار لأخذ استشارته.</p>
-                                </div>
-                            </div>
-                            <div class="number-box center-flex">
-                                <span>3</span>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="main-content">
-                                <div class="icon-box">
-                                    <div class="i-container center-flex">
-                                        <i class='bx bxs-ambulance bx-tada' style='color:#ffdd00'></i>
-                                    </div>
-                                </div>
-                                <div class="text-container">
-                                    <h4>الاتصال بالطوارئ</h4>
-                                    <p>في حال اشتدت عليك الأعراض أو لم تستطع التأكد من اصابتك بكوفيد-19 اتصل بالطوارئ فورا لتقديم المساعده.</p>
-                                </div>
-                            </div>
-                            <div class="number-box center-flex">
-                                <span>4</span>
-                            </div>
-                        </div>
+@endforeach
                     </div>
                 </div>
             </div>
@@ -167,59 +136,25 @@
                 </div>
                 <div class="main-accordion-content">
                     <div class="questions-box">
-                        <div class="box">
-                            <input type="radio" name="accordion" id="accordion1">
-                            <label for="accordion1">
-                                <span>ما الذي يحدث للأشخاص المصابين بكوفيد-19؟</span>
-                                <div class="nav-box center-flex">
-                                    <i class='bx bx-plus' ></i>
-                                </div>
-                            </label>
-                            <div class="answer-box">
-                                <span>يتعافى من المرض معظم الأشخاص (نحو 80%) الذين تظهر عليهم الأعراض دون الحاجة إلى العلاج في المستشفى. ويصاب نحو 15% منهم بمضاعفات خطيرة ويحتاجون إلى الأكسجين، ويصبح 5% منهم في حالة حرجة ويحتاجون إلى العناية المركزة.</span>
-                            </div>
+                  @inject('infectedpepoles','App\Models\InfectedPeople' )
+                   @foreach ($infectedpepoles->get() as $key => $infectedpepole)
+                   <div class="box">
+                    <input type="radio" name="accordion" id="accordion{{$key}}">
+                    <label for="accordion{{$key}}">
+                        <span>{{$infectedpepole->tittle}}؟</span>
+                        <div class="nav-box center-flex">
+                            <i class='bx bx-plus'></i>
                         </div>
-                        <div class="box">
-                            <input type="radio" name="accordion" id="accordion2">
-                            <label for="accordion2">
-                                <span>هل هناك أثار طويله الأجل لكوفيد-19؟</span>
-                                <div class="nav-box center-flex">
-                                    <i class='bx bx-plus' ></i>
-                                </div>
-                            </label>
-                            <div class="answer-box">
-                                <span>تستمر معاناة بعض الأشخاص الذين أُصيبوا بكوفيد- 19 من الأعراض ، سواء احتاجوا إلى دخول المستشفى أم لا، بما في ذلك الشعور بالإجهاد والأعراض التنفسية والعصبية.
+                    </label>
+                    <div class="answer-box">
+                     <span>{{$infectedpepole->text}}</span>
+                </div>
+                </div>
+                   @endforeach
 
-                                    وتعمل المنظمة مع شبكتها التقنية العالمية للتدبير العلاجي السريري لكوفيد-19 والباحثين ومجموعات المرضى في جميع أنحاء العالم، لتصميم الدراسات وإجرائها على المرضى الذين تجاوزوا المسار الأولي الحاد للمرض، بغية تحديد نسبة المرضى الذين يصابون بآثار طويلة الأجل ومدة استمرار هذه الآثار وأسباب حدوثها. وسوف تُستخدم هذه الدراسات في تطوير المزيد من الإرشادات الخاصة برعاية المرضى.</span>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <input type="radio" name="accordion" id="accordion3">
-                            <label for="accordion3">
-                                <span>متى ينبغي لي أن أخضع لاختبار الكشف عن كوفيد-19؟</span>
-                                <div class="nav-box center-flex">
-                                    <i class='bx bx-plus' ></i>
-                                </div>
-                            </label>
-                            <div class="answer-box">
-                                <span>ينبغي فحص كل شخص تظهر عليه أعراض، قدر الإمكان. ويمكن للأشخاص غير المصابين بأعراض الذين خالطوا عن كثب شخصاً مصاباً أو يُحتمل أن يكون مصاباً، أن ينظروا أيضاً في الخضوع للاختبار - اتصل بالسلطات الصحية المحلية واتّبع إرشاداتها.</span>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <input type="radio" name="accordion" id="accordion4">
-                            <label for="accordion4">
-                                <span>ما هى توصيات منظمه الصحه العالميه للبلدان؟</span>
-                                <div class="nav-box center-flex">
-                                    <i class='bx bx-plus' ></i>
-                                </div>
-                            </label>
-                            <div class="answer-box">
-                                <span>تشجع المنظمة جميع البلدان على تعزيز ترصّد حالات العدوى التنفسية الحادة الوخيمة (SARI) وتوخي الدقة في استعراض أي أنماط غير اعتيادية لهذه الحالات أو حالات الالتهاب الرئوي، وإبلاغ المنظمة بأي حالات إصابة بفيروس كورونا المستجد، سواء كانت هذه الحالات مؤكدة أم مشتبهاً بها.كما تُشجّع البلدان على مواصلة تعزيز تأهبها للطوارئ الصحية وفقاً للوائح الصحية الدولية (2005).</span>
-                            </div>
-                        </div>
                     </div>
                     <div class="image-accordion-container center-flex">
-                        <img src="images/accordion-1.png" alt="Accordio Image">
+                        <img src="{{asset('Attachments/products/5vFpdZtjYhHt0Pt9Y6ZU25R421qRcCCdZSrjJycG.png')}}" alt="Accordio Image">
                     </div>
                 </div>
             </div>
@@ -252,39 +187,9 @@
                     <p>يوجد لدينا جانب من الخدمات التي نقدمها للمريض مثل الرعايه الصحيه والخدمات الترفيهيه والاسعافات الأوليه والمزيد</p>
                 </div>
                 <div class="serv-box-container">
-                    <div class="serv-box big">
-                        <div class="icon-box">
-                            <div class="i-container center-flex">
-                                <i class='bx bxs-bed' style='color:#ff0004'></i>
-                            </div>
-                        </div>
-                        <div class="text-box-container">
-                            <h4>العنايه الصحيه</h4>
-                            <p>نهتم بصحه المريض جيدا من جميع الجوانب ونجري له فحوصات دوريه على مدار الأسبوع للتأكد من الشفاء التام من جميع الأمراض.</p>
-                        </div>
-                    </div>
-                    <div class="serv-box small">
-                        <div class="icon-box">
-                            <div class="i-container center-flex">
-                                <i class='bx bxs-injection' style='color:#ffca00'></i>
-                            </div>
-                        </div>
-                        <div class="text-box-container">
-                            <h4>الأدويه واللقاحات</h4>
-                            <p>يوجد لدينا جميع الأدويه المستخدمه في علاج جميع الأمراد والموصى بها من منظمه الصحه العالميه والخاضعه الى هيئه الرقابه الدوائيه المصريه ومصرح التعامل بها.</p>
-                        </div>
-                    </div>
-                    <div class="serv-box small">
-                        <div class="icon-box">
-                            <div class="i-container center-flex">
-                                <i class='bx bxs-first-aid' style='color:#0dff00'></i>
-                            </div>
-                        </div>
-                        <div class="text-box-container">
-                            <h4>الاسعافات الأوليه</h4>
-                            <p>نقدم لق خدمه الاسعافات الأوليه المجانيه على مدار 24 ساعه لتفادي الوقوع الاصابات التي قد تؤدي الى الوفاه.</p>
-                        </div>
-                    </div>
+                @inject('Serveces','App\Models\Servece')
+                  @foreach ($Serveces->get() as $serve)
+
                     <div class="serv-box small">
                         <div class="icon-box">
                             <div class="i-container center-flex">
@@ -292,32 +197,11 @@
                             </div>
                         </div>
                         <div class="text-box-container">
-                            <h4>العادات المتنقله</h4>
-                            <p>منذ أن أطلقت الحكومه المصريه برنامج العيادات المتنقله كنا من أوائل المساهمين في هذا البرنامج وأطلقنا قوافل ضخمه في جميع أنحاء الجمهوريه.</p>
-                        </div>
+                            <h4>{{$serve->tittle}}</h4>
+                          <p>{{$serve->text}}</p>
+                         </div>
                     </div>
-                    <div class="serv-box big">
-                        <div class="icon-box">
-                            <div class="i-container center-flex">
-                                <i class='bx bxs-blanket' style='color:#00f7ff'></i>
-                            </div>
-                        </div>
-                        <div class="text-box-container">
-                            <h4>الخدمات الترفيهيه</h4>
-                            <p>نقدم خدمات ترفيهيه للمرضي للحد من الأثار النفسيه الناتجه عن الاصابه بكوفيد-19 ويتمثل ذلك في ممارسه جميع الأنشطه التفاعليه التي ينعكس أثرها على المريض.</p>
-                        </div>
-                    </div>
-                    <div class="serv-box small">
-                        <div class="icon-box">
-                            <div class="i-container center-flex">
-                                <i class='bx bxs-dryer' style='color:#ff00e1'></i>
-                            </div>
-                        </div>
-                        <div class="text-box-container">
-                            <h4>العنايه الشخصيه</h4>
-                            <p>يوجد لدينا جليسات للعمل على مدار 24 ساعه لتقديم الخدمات الشخصيه الى مرضانا.</p>
-                        </div>
-                    </div>
+                   @endforeach
                 </div>
             </div>
         </section>
@@ -341,10 +225,10 @@
                         </div>
                         <div class="all-content">
 
-                            <input name = "name" class="three-width" type="text" placeholder="الاسم ">
-                            <input name = "age" class="three-width" type="number" placeholder="السن">
-                            <input name = "address"class="two-width" type="text" placeholder="العنوان">
-                            <input name = "national_id"class="two-width" type="text" placeholder="الرقم القومي">
+                            <input value="{{ old('name') }}" name = "name" class="three-width" type="text" placeholder="الاسم ">
+                            <input value="{{ old('age') }}"name = "age" class="three-width" type="number" placeholder="السن">
+                            <input value="{{ old('address') }}" name = "address"class="two-width" type="text" placeholder="العنوان">
+                            <input value="{{ old('national_id') }}" name = "national_id"class="two-width" type="text" placeholder="الرقم القومي">
                         </div>
                     </div>
                     <div class="contact-info">
@@ -352,8 +236,8 @@
                             <h4>وسائل الاتصال</h4>
                         </div>
                         <div class="all-content">
-                            <input name = "email" class="three-width" type="text" placeholder="البريد الالكتروني">
-                            <input name = "phone" class="three-width" type="text" placeholder="رقم الهاتف">
+                            <input value="{{ old('email') }}" name = "email" class="three-width" type="text" placeholder="البريد الالكتروني">
+                            <input value="{{ old('phone') }}" name = "phone" class="three-width" type="text" placeholder="رقم الهاتف">
                         </div>
                     </div>
                     <div class="health-status">
@@ -365,6 +249,7 @@
                                 <input type="radio" name="is_have_chronic_disease" id="yeas-answer" value="1">
                                 <label for="yeas-answer">نعم</label>
                             </div>
+                            <input type="hidden" name="is_avalible" value="1">
                             <div class="no-answer-box center-flex">
                                 <input type="radio" name="is_have_chronic_disease" id="no-answer"value="0">
                                 <label for="no-answer">لا</label>
@@ -376,15 +261,15 @@
                             <h4>المعلومات الطبيه</h4>
                         </div>
                         <div class="all-content">
-                            <input class="two-width" name = "surgeries_before"type="text" placeholder="هل قمت باجراء عمليه جراحيه من قبل؟">
-                            <input class="two-width"name ="serious_injuries_before" type="text" placeholder="هل أصبت باصابات خطيره من قبل؟">
-                            <input class="three-width" name="blood_type" type="text" placeholder="فصيله الدم">
-                            <input class="three-width" name="glucose_measurement" type="text" placeholder="مقياس السكر">
-                            <input class="three-width" name="pressure_gauge" type="text" placeholder="مقياس الضغط">
+                            <input class="two-width" value="{{old('surgeries_before')}}"  name = "surgeries_before"type="text" placeholder="هل قمت باجراء عمليه جراحيه من قبل؟">
+                            <input class="two-width" value=" {{old('serious_injuries_before')}}" name ="serious_injuries_before" type="text" placeholder="هل أصبت باصابات خطيره من قبل؟">
+                            <input class="three-width" value="{{old('blood_type')}}"  name="blood_type" type="text" placeholder="فصيله الدم">
+                            <input class="three-width" value="{{old('glucose_measurement')}}"  name="glucose_measurement" type="text" placeholder="مقياس السكر">
+                            <input class="three-width" value="{{old('pressure_gauge')}}"  name="pressure_gauge" type="text" placeholder="مقياس الضغط">
                         </div>
                     </div>
                     <div class="submit-and-reset">
-                        <input class="submit center-flex btn primary-btn" type="submit" value="تم">
+                        <input class="submit center-flex btn btn-primary" type="submit" value="تم">
                         <input class="reset center-flex btn" type="reset" value="اعاده تلقيم">
                     </div>
                 </form>

@@ -32,13 +32,5 @@ class DeleteProduct extends Component
         $this->dispatchBrowserEvent('close-modal');
 
       }
-    //   $file = $model->image->filename;
-    //     $file =public_path('Attachments/products/'.$file);
-    //     $img=File::delete($file);
-    //     $model->image->delete();
-    //     $model->delete();
-    //     $this->emit('ActionrefreshUsersList');
-    //     $this->dispatchBrowserEvent('close-modal');
-
     }
 }

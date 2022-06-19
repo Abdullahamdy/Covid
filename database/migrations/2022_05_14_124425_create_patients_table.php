@@ -27,6 +27,7 @@ class CreatePatientsTable extends Migration
             $table->string('blood_type');
             $table->bigInteger('glucose_measurement');
             $table->bigInteger('pressure_gauge');
+            $table->integer('is_avalible')->default(1)->nullable();
             $table->timestamps();
         });
     }

@@ -129,6 +129,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a  href="{{url('admin/patient-booking')}}" class="nav-link">
+                    <i class="nav-icon far fa-circle text-danger"></i>
+                    <p class="text">حجز الغرف</p>
+                  </a>
+              </li>
+              <li class="nav-item">
                 <a  href="{{url('admin/contact-us')}}" class="nav-link">
                   <i class="nav-icon far fa-circle text-danger"></i>
                   <p class="text">تواصل معنا</p>

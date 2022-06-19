@@ -31,6 +31,6 @@ Route::group(['middleware' => ['guest:web']], function () {
     Route::get('feeling-contagiouses',\App\Http\Livewire\FeelingContagious\FeelingContagious::class)->name('feeling-contagiouses');
     Route::get('infected-peoples',\App\Http\Livewire\InfectedPeoples\InfectedPeoples::class)->name('infected-peoples');
     Route::get('rooms',\App\Http\Livewire\Rooms\Room::class)->name('rooms');
-
+    Route::get('patient-booking',\App\Http\Livewire\PatientBooking\PatienBooking::class)->name('patient-booking');
 
 });

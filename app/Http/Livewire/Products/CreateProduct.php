@@ -30,12 +30,12 @@ class CreateProduct extends Component
             'product.cat_id'=>'required',
             'product.quantity'=>'required',
             'product.description'=>'required',
-            
+
         ]);
 
         $thisrecord =   Product::create($data['product']);
-      
-       
+
+
         foreach($this->photo as $file){
                     $name = $file->getClientOriginalName();
                     $name = Str::random(40) . '.' . pathinfo($name, PATHINFO_EXTENSION);
@@ -47,11 +47,11 @@ class CreateProduct extends Component
                 }
         $this->emit('saved');
         $this->dispatchBrowserEvent('close-modal');
-        $this->emit('ActionrefreshUsersList'); 
-       
- 
+        $this->emit('ActionrefreshUsersList');
+
+
    $this->product = [];
-        
+
 
     }
 }

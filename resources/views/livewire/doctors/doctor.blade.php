@@ -28,7 +28,7 @@
 
                         <td>{{ $model->doctor_name }}</td>
                         <td>{{ $model->doctor_age }}</td>
-                        <td>{{ $model->specialization_id }}</td>
+                        <td>{{ $model->specialit->specialties }}</td>
 
                         <td>
                             {{-- <livewire:users.show-user  :user_id="$user->id" :key="'user-show-users-'.$user->id"></livewire:users.show-user> --}}
